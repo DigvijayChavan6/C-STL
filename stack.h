@@ -1,19 +1,19 @@
 #ifndef stack_h
 #define stack_h
 
-typedef struct{
+struct stackNode{
     void* data;
-    stackNode *prev;
-}stackNode;
+    struct stackNode *prev;
+};
 
 typedef struct{
-    stackNode *top;
-    size_t size;
+    struct stackNode *top;
+    unsigned int size;
     char *type;
 }stack;
 
 stack* createStack(char*);
-void push(stack* , void*);
-void* pop(stack*);
+void pushC(stack* , void*);
+void* popC(stack*);
 
 #endif
