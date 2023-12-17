@@ -1,19 +1,19 @@
 #ifndef queue_h
 #define queue_h
 
-struct queueNode{
+struct queue_node{
     void* data;
-    struct queueNode *next;
+    struct queue_node *next;
 };
 
 typedef struct{
-    struct queueNode *front , *rear;
+    struct queue_node *front , *rear;
     size_t size;
     char *type;
 }queue;
 
-queue* createQueue(char*);
-void addToQueueC(queue* , void*);
-void* removeFromQueueC(queue*);
+queue* queue_create(char*);
+void queue_insert(queue* , void*);
+void* queue_remove(queue*);
 
 #endif
