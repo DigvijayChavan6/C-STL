@@ -1,10 +1,9 @@
 #include<stdlib.h>
 #include<string.h>
 #include<ctype.h>
-#include<stdio.h>
 #include "stack.h"
 
-stack* createStack(char *dataType){
+stack* stack_create(char *dataType){
     stack *st=(stack*)malloc(sizeof(stack));
     st->top=NULL;
     st->size=0;
@@ -15,8 +14,9 @@ stack* createStack(char *dataType){
     }
     return st;
 }
-void pushC(stack *st,void* val){
-    struct stackNode* node=(struct stackNode*)malloc(sizeof(struct stackNode));
+
+void stack_push(stack *st,void* val){
+    struct stack_node* node=(struct stack_node*)malloc(sizeof(struct stack_node));
     size_t size;
     if(0==strcmp(st->type,"CHAR"))size=sizeof(char);
     else if(0==strcmp(st->type,"STRING"))size=strlen((char*)val)+1;
@@ -30,12 +30,19 @@ void pushC(stack *st,void* val){
     st->top=node;
     st->size++;
 }
-void* popC(stack *st){
-    if(!st->top)return NULL;
+
+void* stack_pop(stack *st){
+    if(st->top==NULL)return NULL;
     void* val=st->top->data;
-    struct stackNode *t=st->top;
+    struct stack_node *t=st->top;
     st->top=st->top->prev;
     free(t);
     st->size--;
     return val;
+}
+
+void* stack_peek(stack *st){
+    if(st->top==NULL)return NULL;
+    void* val=st->top->data;
+    return val;    
 }
