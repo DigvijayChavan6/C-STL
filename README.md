@@ -59,13 +59,13 @@ Here's a simple example of using the stack data structure:
 #include "stack.h"
 
 int main() {
-    struct stack st = createStack("INT");
+    struct stack *st= createStack("INT");
     int a = 10, b = 20;
 
-    push(&st, &a);
-    push(&st, &b);
+    stack_push(st, &a);
+    stack_push(st, &b);
 
-    printf("Popped value: %d\n", *((int*)pop(&st)));
+    printf("Popped value: %d\n", *((int*)stack_pop(st)));
 
     return 0;
 }

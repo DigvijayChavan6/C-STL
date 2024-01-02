@@ -16,5 +16,7 @@ stack* stack_create(char*);
 void stack_push(stack* , void*);
 void* stack_pop(stack*);
 void* stack_peek(stack*);
+short stack_isempty(stack*);
+void stack_clean(stack*);
 
 #endif
