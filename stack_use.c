@@ -6,7 +6,7 @@ int main(){
     stack *st=stack_create("string");
     char val[20];
     short choise;
-    struct stack_node *t;
+    struct stack_node *temp;
     while(1){
         printf("\n1.Push\n2.Pop\n3.Peek\n4.See\n5.Exit");
         printf("\nEnter your choise:");
@@ -34,10 +34,10 @@ int main(){
                 }
                 break;
             case 4:
-                t=st->top;
-                while(t!=NULL){
-                    printf("\n%s",((char*)t->data));
-                    t=t->prev;
+                temp=st->top;
+                while(temp!=NULL){
+                    printf("\n%s",((char*)temp->data));
+                    temp=temp->prev;
                 }
                 break;
             case 5:
