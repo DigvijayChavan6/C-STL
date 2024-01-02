@@ -3,13 +3,13 @@
 #include<ctype.h>
 #include "stack.h"
 
-stack* stack_create(char *dataType){
+stack* stack_create(char *data_type){
     stack *st=(stack*)malloc(sizeof(stack));
     st->top=NULL;
     st->size=0;
-    st->type=(char*)malloc(strlen(dataType)+1);
-    strcpy(st->type,dataType);
-    for(int i=0;dataType[i]!='\0';i++){
+    st->type=(char*)malloc(strlen(data_type)+1);
+    strcpy(st->type,data_type);
+    for(int i=0;data_type[i]!='\0';i++){
         st->type[i]=toupper(st->type[i]);
     }
     return st;
