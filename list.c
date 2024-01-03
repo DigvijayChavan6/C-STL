@@ -31,3 +31,23 @@ void list_add_begin(list* li , void* val){
 void list_add_end(list* li, void* val){
     struct list_node *node=(struct)
 }
+
+void list_insert(list* li ,void* val, int *pos){
+    struct list_node *node=(struct list_node*)malloc(sizeof(struct list_node));
+    node->data=val;
+    if(li->head==NULL){
+        li->head=node;
+    }
+    else
+    {
+        while(li->head!=NULL)
+        {
+            pos--;
+            if(pos==1)
+            {
+                node->data=val;
+            }
+                node->next=li->head;
+        }
+    }
+}
