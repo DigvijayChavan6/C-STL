@@ -31,3 +31,14 @@ void list_add_begin(list* li , void* val){
 void list_add_end(list* li, void* val){
     struct list_node *node=(struct)
 }
+
+
+
+int list_isempty(list* li){
+    if(li->head==NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}

@@ -18,5 +18,6 @@ void* list_delete_begin(list*);
 void list_add_end(list* , void*);
 void* list_delete_back(list*);
 void list_insert(list*,unsigned int);
+int list_isempty(list*);
 
 #endif
