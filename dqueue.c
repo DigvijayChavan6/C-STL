@@ -17,7 +17,7 @@ dqueue* dqueue_create(char* data_type){
     return q;
 }
 
-void dqueue_push_front(dqueue* q, void* val){
+struct dqueue_node* create_dqueue_node(dqueue* q,void* val){
     struct dqueue_node* node=NULL;
     while(node==NULL)node=(struct dqueue_node*)malloc(sizeof(struct dqueue_node));
     size_t size;
@@ -32,7 +32,11 @@ void dqueue_push_front(dqueue* q, void* val){
     node->next=NULL;
     while(node->data==NULL)node->data=malloc(size);
     memcpy(node->data,val,size);
-    node->next=NULL;
+    return node;
+}
+
+void dqueue_push_front(dqueue* q, void* val){
+    struct dqueue_node node=create_dqueue_node(q,val);
     if(q->front==NULL){
         q->front=node;
         q->rear=node;
@@ -46,21 +50,7 @@ void dqueue_push_front(dqueue* q, void* val){
 }
 
 void dqueue_push_back(dqueue* q, void* val){
-    struct dqueue_node* node=NULL;
-    while(node==NULL)node=(struct dqueue_node*)malloc(sizeof(struct dqueue_node));
-    size_t size;
-    if(0==strcmp(q->type,"CHAR"))size=sizeof(char);
-    else if(0==strcmp(q->type,"STRING"))size=strlen((char*)val)+1;
-    else if(0==strcmp(q->type,"FLOAT"))size=sizeof(float);
-    else if(0==strcmp(q->type,"DOUBLE"))size=sizeof(double);
-    else if(0==strcmp(q->type,"BOOL"))size=sizeof(short);
-    else size=sizeof(int);
-    node->data=NULL;
-    node->prev=NULL;
-    node->next=NULL;
-    while(node->data==NULL)node->data=malloc(size);
-    memcpy(node->data,val,size);
-    node->next=NULL;
+    struct dqueue_node* node=create_dqueue_node(q,val);
     if(q->rear==NULL){
         q->rear=node;
         q->front=node;
