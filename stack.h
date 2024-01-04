@@ -8,7 +8,7 @@ struct stack_node{
 
 typedef struct{
     struct stack_node *top;
-    unsigned int size;
+    size_t size;
     char *type;
 }stack;
 

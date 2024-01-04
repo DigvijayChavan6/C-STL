@@ -8,15 +8,23 @@ struct list_node{
 
 typedef struct{
     struct list_node *head;
-    unsigned int size;
+    size_t size;
     char *type;
 }list;
 
 list* list_create(char*);
-void list_add_begin(list* , void*);
-void* list_delete_begin(list*);
-void list_add_end(list* , void*);
-void* list_delete_back(list*);
-void list_insert(list*,unsigned int);
+struct list_node* create_list_node(list*,void*);
+
+void list_push_front(list* , void*);
+void* list_pop_front(list*);
+void list_push_back(list* , void*);
+void* list_pop_back(list*);
+
+void list_insert(list*,size_t);
+void* list_remove(list*,size_t);
+
+short list_isempty(list*);
+size_t list_size(list*);
+void list_clean(list*);
 
 #endif

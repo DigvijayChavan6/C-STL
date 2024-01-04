@@ -8,14 +8,19 @@ struct dqueue_node{
 
 typedef struct{
     struct dqueue_node *front , *rear;
-    unsigned int size;
+    size_t size;
     char *type;
 }dqueue;
 
 dqueue* dqueue_create(char*);
+
 void dqueue_push_front(dqueue* , void*);
-void* dqueue_pop_front(dqueue*);
 void dqueue_push_back(dqueue* , void*);
+void* dqueue_pop_front(dqueue*);
 void* dqueue_pop_back(dqueue*);
+
+short dqueue_isempty(dqueue*);
+size_t dqueue_size(dqueue*);
+void dqueue_clean(dqueue*);
 
 #endif
