@@ -13,6 +13,7 @@ typedef struct{
 }dqueue;
 
 dqueue* dqueue_create(char*);
+struct dqueue_node* create_dqueue_node(dqueue*,void*);
 
 void dqueue_push_front(dqueue* , void*);
 void dqueue_push_back(dqueue* , void*);
