@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 #include "list.h"
 
 list* list_create(char* data_type){
@@ -42,6 +43,7 @@ void list_push_front(list* li, void* val){
         li->head->prev=node;
         li->head=node;
     }
+    li->size++;
 }
 
 void* list_pop_front(list* li){
@@ -51,6 +53,7 @@ void* list_pop_front(list* li){
     li->head=temp->next;
     li->head->prev=NULL;
     free(temp);
+    li->size--;
     return val;
 }
 
@@ -70,10 +73,35 @@ void list_push_back(list* li, void* val){
 }
 
 void* list_pop_back(list* li){
-
+    struct list_node *temp=li->head;
+    void* val;
+        if(li->head==NULL){
+            val=NULL;
+        }
+        else if(temp->next!=NULL && temp->prev!=NULL){
+            li->head=NULL;
+            val=temp->data;
+            free(temp);
+        }
+        else{
+            while(temp->next->next!=NULL){
+                temp=temp->next;
+            }
+            val=temp->next->data;
+            free(temp->next);
+            temp->next=NULL;
+        }
+        li->size--;
+        return val;
 }
 
+
+
+
+
+
 void list_insert(list* li,size_t pos){
+    
 
 }
 
