@@ -100,8 +100,37 @@ void* list_pop_back(list* li){
 
 
 
-void list_insert(list* li,size_t pos){
-    
+void list_insert(list* li,size_t pos,void* val){
+  if(pos > li->size + 1){
+        printf("Invalid position for insertion\n");
+        return;
+    }
+
+   struct list_node* node = create_list_node(li, val);
+
+    if(pos == 1) {
+        // Insert at the beginning
+        node->next = li->head;
+        if (li->head != NULL) {
+            li->head->prev = node;
+        }
+        li->head = node;
+    } else {
+        // Insert at the specified position
+        struct list_node* temp = li->head;
+        for(size_t i = 1; i < pos - 1; i++){
+            temp = temp->next;
+        }
+
+        node->next = temp->next;
+        node->prev = temp;
+        if (temp->next != NULL) {
+            temp->next->prev = node;
+        }
+        temp->next = node;
+    }
+
+    li->size++;  
 
 }
 
