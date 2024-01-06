@@ -18,7 +18,6 @@ void map_push(map*,void*,void*);
 size_t map_size(map*);
 short map_isempty(map*);
 void map_clean(map*);
-#include<stdio.h>
+
 
 #endif
-// this is just comment
