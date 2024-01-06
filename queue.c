@@ -63,6 +63,29 @@ short queue_isempty(queue* q){
     return 0;
 }
 
+short queue_ispresent(queue* q,void* find_val){
+    struct queue_node *temp=q->front;
+    while(temp!=NULL){
+        if(0==strcmp(temp->data,find_val))return 1;
+        temp=temp->next;
+    }
+    return 0;
+}
+
+void queue_reverse(queue* q) {
+    struct queue_node* prev = NULL;
+    struct queue_node* current = q->front;
+    while (current != NULL) {
+        struct queue_node* next = current->next;  
+        current->next = prev;                      
+        prev = current;
+        current = next;
+    }
+    struct queue_node* temp = q->front;
+    q->front = q->rear;
+    q->rear = temp;
+}
+
 size_t queue_size(queue* q){
     size_t size=0;
     struct queue_node *temp=q->front;

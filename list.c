@@ -95,10 +95,16 @@ void* list_pop_back(list* li){
         return val;
 }
 
-
-
-
-
+short list_ispresent(list* li,void* find_val){
+    struct list_node *temp=li->head;
+    while(temp!=NULL){
+        if(0==strcmp(temp->data,find_val)){
+            return 1;
+        }
+        temp=temp->next;
+    }
+    return 0;
+}
 
 void list_insert(list* li,size_t pos){
     
@@ -108,34 +114,38 @@ void list_insert(list* li,size_t pos){
 void* list_remove(list* li,size_t pos){
 
    if(li->head == NULL || pos > li->size){
-        printf("Invalid position for removal\n");
         return NULL;
     }
-
     struct list_node* temp = li->head;
-
     for(size_t i = 1; i < pos; i++){
         temp = temp->next;
     }
-
     if(temp->prev != NULL){
         temp->prev->next = temp->next;
-    } else {
-        // If removing the first node
+    } 
+    else {
         li->head = temp->next;
     }
-
     if(temp->next != NULL){
         temp->next->prev = temp->prev;
     }
-
     void* val = temp->data;
     free(temp);
-
     li->size--;
-
     return val;
+}
 
+list* list_reverse(list* li) {
+    struct list_node* prev = NULL;
+    struct list_node* temp = li->head;
+    while (temp != NULL) {
+        struct list_node* next = temp->next;
+        temp->next = prev;               
+        prev = temp; 
+        temp = next;
+    }
+    li->head = prev;
+    return li;
 }
 
 short list_isempty(list* li){

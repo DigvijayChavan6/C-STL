@@ -8,7 +8,7 @@ int main(){
     short choise;
     struct queue_node *temp;
     while(1){
-        printf("\n1.push\n2.pop\n3.see all data\n4.size of queue\n5.Exit");
+        printf("\n1.push\n2.pop\n3.see all data\n4.size of queue\n5.Ispresent\n6.queue reverse\n7.Exit\n");
         printf("\nEnter your choise:");
         scanf("%d",&choise);
         switch (choise){
@@ -36,12 +36,21 @@ int main(){
                 printf("\nsize of dequeue is %d",queue_size(q));
                 break;
             case 5:
+                printf("Enter the element to find\n");
+                scanf("%s",val);
+                if(queue_ispresent(q,val))printf("Element is present\n");
+                else printf("Element is not present\n");
+                break;
+            case 6:
+                queue_reverse(q);
+                break;
+            case 7:
                 queue_clean(q);
                 break;
             default :
                 printf("\nInvalid input");
         }
-        if(choise==5)break;
+        if(choise==7)break;
     }
     return 0;
 }

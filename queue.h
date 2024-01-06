@@ -19,6 +19,8 @@ void* queue_pop(queue*);
 
 short queue_isempty(queue*);
 size_t queue_size(queue*);
+short queue_ispresent(queue*,void*);
+void queue_reverse(queue*);
 void queue_clean(queue*);
 
 #endif
