@@ -16,9 +16,8 @@ queue* queue_create(char* data_type);
 
 void queue_push(queue*, void*);
 void* queue_pop(queue*);
-
 short queue_isempty(queue*);
 size_t queue_size(queue*);
 void queue_clean(queue*);
-
+void queue_swap(queue*, struct queue_node*, struct queue_node*);
 #endif
