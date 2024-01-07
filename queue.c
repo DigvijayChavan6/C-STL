@@ -104,4 +104,12 @@ void queue_clean(queue* q){
         free(t);
     }
     free(q);
+
+void queue_swap(queue* q1,queue* q2){
+    if (0==strcmp(q1->type,q2->type)) {
+        queue* temp=q1;
+        q1=q2;
+        q2=temp;
+    }
+}
 }
