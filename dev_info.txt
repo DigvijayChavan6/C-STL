@@ -1,0 +1,124 @@
+The improvment we have to done in the project
+
+stack  ::
+        stack_create();
+        stack_push();
+        stack_pop();
+        stack_peek();
+        stack_isempty();
+        stack_clean();
+
+        In stack data structure we can implemented the above functions 
+    
+    improvment we have to done:
+        1) We have to improve the stack_clean() functions
+        2) we have to implement the stack_ispresent() function
+        3) we have to implement the stack_swap() function
+
+    //If any improvment is there the add the improvments on that add the functionality on the
+       files and please commit the changes on bug.txt file at the time of any change the mention 
+       the change in these file or disscus with team members (add the changes in below section and the improvments in improvments section)
+
+    changes:
+          (you have to maintain the changes here)
+        
+
+
+
+
+
+queue  ::
+        queue_create();
+        queue_push();
+        queue_pop();
+        queue_isempty();
+        queue_size();
+        queue_clean();
+        queue_reverse();
+        queue_ispresent();
+
+        In queue data structure we can implemented the above functions 
+
+    improvment we have to done:
+            1) We have to improve the queue_clean() functions
+            2) We have to implement the queue_swap() function
+           
+
+     //If any improvment is there the add the improvments on that add the functionality on the
+       files and please commit the changes on bug.txt file at the time of any change the mention 
+       the change in these file or disscus with team members (add the changes in below section and the improvments in improvments section)
+
+    
+    changes:
+          (you have to maintain the changes here)
+            
+
+
+
+dqueue::
+        dqueue_push_front();
+        dqueue_push_back();
+        dqueue_pop_front();
+        dqueue_pop_back();
+        dqueue_isempty();
+        dqueue_size();
+        dqueue_clean();
+        dqueue_reverse();
+        dqueue_ispresent() 
+
+        In dqueue data structure we can implemented the above functions 
+
+    improvment we have to done:
+            1) We have to improve the dqueue_clean() functions
+            3) We have to implement the dqueue_swap() function
+            
+
+     //If any improvment is there the add the improvments on that add the functionality on the
+       files and please commit the changes on bug.txt file at the time of any change the mention 
+       the change in these file or disscus with team members (add the changes in below section and the improvments in improvments section)
+
+    
+    changes:
+          (you have to maintain the changes here)
+
+
+
+
+
+list ::
+        list_push_front();
+        list_pop_front();
+        list_push_back();
+        list_pop_back();
+        list_insert();
+        list_remove();
+        list_isempty();
+        list_size();
+        list_clean();
+        list_ispresent();
+        list_reverse();
+
+        In queue data structure we can implemented the above functions 
+
+    improvment we have to done:
+            1) We have to improve the lilst_clean() functions
+            2) We have to implement the list_swap() function
+            
+
+     //If any improvment is there the add the improvments on that add the functionality on the
+       files and please commit the changes on bug.txt file at the time of any change the mention 
+       the change in these file or disscus with team members (add the changes in below section and 
+       the improvments in improvments section)
+
+    
+    changes:
+          (you have to maintain the changes here)
+            
+
+
+
+
+map ::
+       (the implementation of map is going on)
+       
+            

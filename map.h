@@ -14,9 +14,9 @@ typedef struct{
 
 map* map_create(char*,char*);
 void map_push(map*,void*,void*);
-
 size_t map_size(map*);
 short map_isempty(map*);
 void map_clean(map*);
+
 
 #endif

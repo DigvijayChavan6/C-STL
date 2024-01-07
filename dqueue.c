@@ -36,7 +36,7 @@ struct dqueue_node* create_dqueue_node(dqueue* q,void* val){
 }
 
 void dqueue_push_front(dqueue* q, void* val){
-    struct dqueue_node node=create_dqueue_node(q,val);
+    struct dqueue_node* node=create_dqueue_node(q,val);
     if(q->front==NULL){
         q->front=node;
         q->rear=node;
@@ -94,6 +94,31 @@ void* dqueue_pop_back(dqueue* q){
     free(t);
     q->size--;
     return val;
+}
+
+short dqueue_ispresent(dqueue* q,void* find_val){
+    struct dqueue_node *temp=q->front;
+    while(temp!=NULL){
+        if(0==strcmp(temp->data,find_val)){
+            return 1;
+        }
+        temp=temp->next;
+    }
+    return 0;
+}
+
+void dqueue_reverse(dqueue* q) {
+    struct dqueue_node* temp = NULL;
+    struct dqueue_node* current = q->front;
+    while (current != NULL) {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+        current = current->prev;
+    }
+    temp = q->front;
+    q->front = q->rear;
+    q->rear = temp;
 }
 
 short dqueue_isempty(dqueue* q){
