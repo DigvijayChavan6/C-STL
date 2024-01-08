@@ -58,18 +58,74 @@ void* queue_pop(queue* q){
     return val;
 }
 
+size_t queue_size(queue* q){
+    size_t size=0;
+    struct queue_node *temp=q->front;
+    while(temp!=NULL){
+        size++;
+        temp=temp->next;
+    }
+    q->size=size;
+    return size;
+}
+
+void queue_swap(queue* q1,queue* q2){
+    if (0==strcmp(q1->type,q2->type)) {
+        struct queue_node *node=q1->front;
+        q1->front=q2->front;
+        q2->front=node;
+
+        node=q1->rear;
+        q1->rear=q2->rear;
+        q2->rear=node;
+        
+        size_t size=q1->size;
+        q1->size=q2->size;
+        q2->size=size;
+
+    }
+}
+
+short queue_ispresent(queue* q,void* val){
+    struct queue_node *node=q->front;
+    while(node!=NULL){
+        if(0==strcmp(q->type,"CHAR")){
+            if(*(char*)node->data == *(char*)val)return 1;
+        }
+        else if(0==strcmp(q->type,"STRING")){
+            if(strcmp((char*)node->data ,(char*)val)==0)return 1;
+        }
+        else if(0==strcmp(q->type,"FLOAT")){
+            if(*(float*)node->data == *(float*)val)return 1;
+        }
+        else if(0==strcmp(q->type,"DOUBLE")){
+            if(*(double*)node->data == *(double*)val)return 1;
+        }
+        else if(0==strcmp(q->type,"BOOL")){
+            if(*(short*)node->data == *(short*)val)return 1;
+        }
+        else{
+            if(*(int*)node->data == *(int*)val)return 1;
+        }
+        node=node->next;
+    }
+    return 0;
+}
+
 short queue_isempty(queue* q){
     if(q->front==NULL)return 1;
     return 0;
 }
 
-short queue_ispresent(queue* q,void* find_val){
-    struct queue_node *temp=q->front;
-    while(temp!=NULL){
-        if(0==strcmp(temp->data,find_val))return 1;
-        temp=temp->next;
+void queue_clean(queue* q){
+    while(q->front!=NULL){
+        struct queue_node *temp=q->front;
+        q->front=temp->next;
+        free(temp->data);
+        free(temp);
     }
-    return 0;
+    free(q->type);
+    free(q);
 }
 
 void queue_reverse(queue* q) {
@@ -84,32 +140,4 @@ void queue_reverse(queue* q) {
     struct queue_node* temp = q->front;
     q->front = q->rear;
     q->rear = temp;
-}
-
-size_t queue_size(queue* q){
-    size_t size=0;
-    struct queue_node *temp=q->front;
-    while(temp!=NULL){
-        size++;
-        temp=temp->next;
-    }
-    q->size=size;
-    return size;
-}
-
-void queue_clean(queue* q){
-    while(q->front!=NULL){
-        struct queue_node *t=q->front;
-        q->front=q->front->next;
-        free(t);
-    }
-    free(q);
-
-void queue_swap(queue* q1,queue* q2){
-    if (0==strcmp(q1->type,q2->type)) {
-        queue* temp=q1;
-        q1=q2;
-        q2=temp;
-    }
-}
 }

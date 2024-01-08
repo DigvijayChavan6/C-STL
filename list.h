@@ -28,4 +28,5 @@ size_t list_size(list*);
 void list_clean(list*);
 short list_ispresent(list*,void*);
 list* list_reverse(list*);
+
 #endif

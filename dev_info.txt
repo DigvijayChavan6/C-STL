@@ -1,59 +1,8 @@
 The improvment we have to done in the project
 
-stack  ::
-        stack_create();
-        stack_push();
-        stack_pop();
-        stack_peek();
-        stack_isempty();
-        stack_clean();
+stack  :: ✔️  Everything is done inside stack.  
 
-        In stack data structure we can implemented the above functions 
-    
-    improvment we have to done:
-        1) We have to improve the stack_clean() functions
-        2) we have to implement the stack_ispresent() function
-        3) we have to implement the stack_swap() function
-
-    //If any improvment is there the add the improvments on that add the functionality on the
-       files and please commit the changes on bug.txt file at the time of any change the mention 
-       the change in these file or disscus with team members (add the changes in below section and the improvments in improvments section)
-
-    changes:
-          (you have to maintain the changes here)
-        
-
-
-
-
-
-queue  ::
-        queue_create();
-        queue_push();
-        queue_pop();
-        queue_isempty();
-        queue_size();
-        queue_clean();
-        queue_reverse();
-        queue_ispresent();
-
-        In queue data structure we can implemented the above functions 
-
-    improvment we have to done:
-            1) We have to improve the queue_clean() functions
-            2) We have to implement the queue_swap() function
-           
-
-     //If any improvment is there the add the improvments on that add the functionality on the
-       files and please commit the changes on bug.txt file at the time of any change the mention 
-       the change in these file or disscus with team members (add the changes in below section and the improvments in improvments section)
-
-    
-    changes:
-          (you have to maintain the changes here)
-            
-
-
+queue  :: ✔️  Everything is done inside stack.  
 
 dqueue::
         dqueue_push_front();
