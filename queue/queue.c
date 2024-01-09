@@ -19,7 +19,7 @@ queue* queue_create(char* data_type){
 
 void queue_push(queue* q, void* val){
     struct queue_node* node=NULL;
-    while(node==NULL)node=(struct queue_node*)malloc(sizeof(struct queue_node));
+    node=(struct queue_node*)malloc(sizeof(struct queue_node));
     size_t size;
     if(0==strcmp(q->type,"CHAR"))size=sizeof(char);
     else if(0==strcmp(q->type,"STRING"))size=strlen((char*)val)+1;
@@ -28,7 +28,7 @@ void queue_push(queue* q, void* val){
     else if(0==strcmp(q->type,"BOOL"))size=sizeof(short);
     else size=sizeof(int);
     node->data=NULL;
-    while(node->data==NULL)node->data=malloc(size);
+    node->data=malloc(size);
     memcpy(node->data,val,size);
     node->next=NULL;
     if(q->rear==NULL){

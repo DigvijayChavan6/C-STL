@@ -4,7 +4,7 @@
 
 int main(){
     stack *st=stack_create("string");
-    stack *s=stack_create("string"),*t;
+    stack *s=stack_create("string");
     char val[20];
     short choise;
     struct stack_node *temp;
