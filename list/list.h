@@ -3,7 +3,7 @@
 
 struct list_node{
     void* data;
-    struct list_node *next,*prev;
+    struct list_node *next;
 };
 
 typedef struct{
@@ -23,10 +23,11 @@ void* list_pop_back(list*);
 void list_insert(list*,size_t,void*);
 void* list_remove(list*,size_t);
 
-short list_isempty(list*);
 size_t list_size(list*);
-void list_clean(list*);
+void list_swap(list*,list*);
 short list_ispresent(list*,void*);
+short list_isempty(list*);
+void list_clean(list*);
 list* list_reverse(list*);
 
 #endif
