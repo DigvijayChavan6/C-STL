@@ -9,7 +9,7 @@ int main(){
     short choise;
     struct queue_node *temp;
     while(1){
-        printf("\n1.Push\n2.Pop\n3.Size\n4.Swap\n5.Is_present\n6.Reverse\n7.See\n8.Exit");
+        printf("\n1.Push\n2.Pop\n3.Size\n4.Swap\n5.Is_present\n6.Reverse\n7.See\n8.Peek\n9.Exit");
         printf("\nEnter your choise:");
         scanf("%d",&choise);
         switch (choise){
@@ -53,14 +53,22 @@ int main(){
                     temp=temp->next;
                 }
                 break;
-            case 8:
+            case 9:
                 queue_clean(qu);
                 queue_clean(q);
                 break;
-            default :
+            case 8:
+                if(!queue_isempty(qu)){
+                    printf("\nPeeked value is %s",((char*)queue_pop(qu)));
+                }
+                else{
+                    printf("\nqueue is empty...");
+                }
+                break;
+                default :
                 printf("\nInvalid input");
         }
-        if(choise==8)break;
+        if(choise==9)break;
     }
     return 0;
 }

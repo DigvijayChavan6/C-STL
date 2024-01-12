@@ -141,3 +141,11 @@ void queue_reverse(queue* q) {
     q->front = q->rear;
     q->rear = temp;
 }
+
+void* queue_peek(queue* q) {
+    if (q->front == NULL) {
+        return NULL;
+    }
+    void* val = q->front->data;
+    return val;
+}
