@@ -23,5 +23,6 @@ short queue_ispresent(queue*,void*);
 short queue_isempty(queue*);
 void queue_clean(queue*);
 void queue_reverse(queue*);
+void* queue_peek(queue*);
 
 #endif
