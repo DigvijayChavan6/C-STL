@@ -59,7 +59,7 @@ int main(){
                 break;
             case 8:
                 if(!queue_isempty(qu)){
-                    printf("\nPeeked value is %s",((char*)queue_pop(qu)));
+                    printf("\nPeeked value is %s",((char*)queue_peek(qu)));
                 }
                 else{
                     printf("\nqueue is empty...");

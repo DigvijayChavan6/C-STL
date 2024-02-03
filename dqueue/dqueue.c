@@ -4,8 +4,7 @@
 #include "dqueue.h"
 
 dqueue* dqueue_create(char* data_type){
-    dqueue *q=NULL;
-    while(q==NULL)q=(dqueue*)malloc(sizeof(dqueue));
+    dqueue *q=(dqueue*)malloc(sizeof(dqueue));
     q->front=NULL;
     q->rear=NULL;
     q->size=0;
@@ -18,8 +17,7 @@ dqueue* dqueue_create(char* data_type){
 }
 
 struct dqueue_node* create_dqueue_node(dqueue* q,void* val){
-    struct dqueue_node* node=NULL;
-    while(node==NULL)node=(struct dqueue_node*)malloc(sizeof(struct dqueue_node));
+    struct dqueue_node* node=(struct dqueue_node*)malloc(sizeof(struct dqueue_node));
     size_t size;
     if(0==strcmp(q->type,"CHAR"))size=sizeof(char);
     else if(0==strcmp(q->type,"STRING"))size=strlen((char*)val)+1;
@@ -29,8 +27,7 @@ struct dqueue_node* create_dqueue_node(dqueue* q,void* val){
     else size=sizeof(int);
     node->data=NULL;
     node->prev=NULL;
-    node->next=NULL;
-    while(node->data==NULL)node->data=malloc(size);
+    node->data=malloc(size);
     memcpy(node->data,val,size);
     return node;
 }
@@ -96,13 +93,28 @@ void* dqueue_pop_back(dqueue* q){
     return val;
 }
 
-short dqueue_ispresent(dqueue* q,void* find_val){
-    struct dqueue_node *temp=q->front;
-    while(temp!=NULL){
-        if(0==strcmp(temp->data,find_val)){
-            return 1;
+short dqueue_ispresent(dqueue* q,void* val){
+    struct dqueue_node *node=q->front;
+    while(node!=NULL){
+        if(0==strcmp(q->type,"CHAR")){
+            if(*(char*)node->data == *(char*)val)return 1;
         }
-        temp=temp->next;
+        else if(0==strcmp(q->type,"STRING")){
+            if(strcmp((char*)node->data ,(char*)val)==0)return 1;
+        }
+        else if(0==strcmp(q->type,"FLOAT")){
+            if(*(float*)node->data == *(float*)val)return 1;
+        }
+        else if(0==strcmp(q->type,"DOUBLE")){
+            if(*(double*)node->data == *(double*)val)return 1;
+        }
+        else if(0==strcmp(q->type,"BOOL")){
+            if(*(short*)node->data == *(short*)val)return 1;
+        }
+        else{
+            if(*(int*)node->data == *(int*)val)return 1;
+        }
+        node=node->next;
     }
     return 0;
 }
@@ -141,7 +153,9 @@ void dqueue_clean(dqueue* q){
     while(q->front!=NULL){
         struct dqueue_node *t=q->front;
         q->front=q->front->next;
+        free(t->data);
         free(t);
     }
+    free(q->type);
     free(q);
 }
