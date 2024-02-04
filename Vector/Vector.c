@@ -1,94 +1,99 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "Vector.h"
+#include "vector.h"
 
 
-Vector* createVector(size_t size){
-    Vector *vec=(Vector*)malloc(sizeof(Vector));
+vector* vector_create(size_t size){
+    vector *vec=(vector*)malloc(sizeof(vector));
     vec->array=NULL;
     vec->size=0;
-    vec->dataSize=size;
+    vec->data_size=size;
     return vec;
 }
 
-void pushBackInVector(Vector *vec, void *val){
-    vec->array=realloc(vec->array,(vec->size + 1)*vec->dataSize)
-    void *dest = (char *)vec->array + vec->size*vec->dataSize;
-    memcpy(dest, val, vec->dataSize);
+void vector_push_back(vector *vec, void *val){
+    vec->array=realloc(vec->array,(vec->size+1)*vec->data_size);
+    memcpy((char*)vec->array+vec->data_size*vec->size,val,vec->data_size);
     vec->size++;
 }
 
-void* popBackFromVector(Vector *vec){
+void* vector_pop_back(vector *vec){
     if (vec == NULL || vec->array == NULL || vec->size == 0)return NULL;
-    void *val = (char *)vec->array + (vec->size - 1) * vec->dataSize;
-    vec->array = realloc(vec->array, (vec->size - 1) * vec->dataSize);
+    void *val = malloc(vec->data_size);
+    memcpy(val,(char *)vec->array + (vec->size - 1) * vec->data_size,vec->data_size);
+    vec->array = realloc(vec->array, (vec->size - 1) * vec->data_size);
     vec->size--;
     return val;
 }
 
-void insertInVector(Vector *vec, void *val, size_t position){
-    if(position > vec->size)return;
+void vector_insert(vector *vec, void *val, size_t position){
+    if(position > vec->size+1)return;
+    vec->array=realloc(vec->array,(vec->size+1)*vec->data_size);
     for (size_t index = vec->size; index > position; index--){
-        void *dest = (char *)vec->array + index * vec->dataSize;
-        void *src = (char *)vec->array + (index - 1) * vec->dataSize;
-        memcpy(dest, src, vec->dataSize);
+        void *dest = (char *)vec->array + index * vec->data_size;
+        void *src = (char *)vec->array + (index - 1) * vec->data_size;
+        memcpy(dest, src, vec->data_size);
     }
-    dest=(char *)vec->array + position * vec->dataSize;
-    
-    memcpy(dest, val, vec->dataSize);
+    void *dest=(char *)vec->array + position * vec->data_size;
+    memcpy(dest, val, vec->data_size);
     vec->size++;
 }
 
-void removeFromVector(Vector *vec, size_t position){
+void vector_remove(vector *vec, size_t position){
     if(position>=vec->size)return;
-    if(strcmp("STRING",vec->type)==0){
-        free((char*)vec->array[position]);
-    }
     for(size_t index = position; index < vec->size - 1; index++){
-        void *dest = (char *)vec->array + index * vec->dataSize;
-        void *src = (char *)vec->array + (index + 1) * vec->dataSize;
-        memcpy(dest, src, vec->dataSize);
+        void *dest = (char *)vec->array + index * vec->data_size;
+        void *src = (char *)vec->array + (index + 1) * vec->data_size;
+        memcpy(dest, src, vec->data_size);
     }
-    vec->array = realloc(vec->array, (vec->size - 1) * vec->dataSize);
-    if (vec->array == NULL && vec->size > 1)exit(EXIT_FAILURE);
+    vec->array = realloc(vec->array, (vec->size - 1) * vec->data_size);
     vec->size--;
 }
 
-size_t sizeOfVector(Vector *vec){
+size_t vector_size(vector *vec){
     if(vec == NULL)return 0;
     return vec->size;
 }
 
-void swapTwoVectors(Vector *vec1, Vector *vec2){
-    if(vec1->dataSize == vec2->dataSize){
-        Vector temp=*vec1;
+void vector_swap(vector *vec1, vector *vec2){
+    if(vec1->data_size == vec2->data_size){
+        vector *temp=malloc(sizeof(vector));
+        *temp=*vec1;
         *vec1=*vec2;
-        *vec2=temp;
+        *vec2=*temp;
+        free(temp);
     }
 }
 
-short isPresentInVector(Vector *vec, void *val){
+short vector_ispresent(vector *vec, void *val){
     if(vec==NULL)return 0;
     for(size_t index = 0; index < vec->size; index++){
-        void *currentElement = (char *)vec->array + index * vec->dataSize;
-        if(memcmp(currentElement, val, vec->dataSize) == 0)return 1;
+        void *currentElement = (char *)vec->array + index * vec->data_size;
+        if(memcmp(currentElement, val, vec->data_size) == 0)return 1;
     }
     return 0;
 }
 
-short isEmptyVector(Vector *vec){
+short vector_isempty(vector *vec){
     if(vec==NULL || vec->array==NULL || vec->size==0)return 1;
     return 0;
 }
 
-void cleanVector(Vector *vec){
-    if(strcmp("STRING",vec->type)==0){
-        for(size_t i=0;i<vec->size;i++){
-            free((char*)vec->array[i]);
-        }
-    }
+void vector_clean(vector *vec){
     free(vec->array);
-    free(vec->type);
     free(vec);
+}
+
+void vector_reverse(vector *vec){
+    if(vec==NULL)return;
+    void *temp=malloc(vec->data_size);
+    for(size_t index = 0 ,back=vec->size-1; index < vec->size/2; index++,back--){
+        void *dex = (char*)vec->array + index * vec->data_size;
+        void *ack = (char*)vec->array + back * vec->data_size;
+        memcpy(temp,dex,vec->data_size);
+        memcpy(dex,ack,vec->data_size);
+        memcpy(ack,temp,vec->data_size);
+    }
+    free(temp);
 }

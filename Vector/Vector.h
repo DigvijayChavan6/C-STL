@@ -1,22 +1,24 @@
-#ifndef Vector_h
-#define Vector_h
+#ifndef vector_h
+#define vector_h
 
 typedef struct{
     void *array;
-    size_t size, dataSize;
-}Vector;
+    size_t size,data_size;
+    char *type;
+}vector;
 
-Vector *createVector(size_t);
+vector *vector_create(size_t);
 
-void pushBackInVector(Vector*, void*);
-void *popBackFromVector(Vector*);
-void insertInVector(Vector*,void*,size_t);
-void removeFromVector(Vector*,size_t);
+void vector_push_back(vector*, void*);
+void *vector_pop_back(vector*);
+void vector_insert(vector*,void*,size_t);
+void vector_remove(vector*,size_t);
 
-size_t sizeOfVector(Vector*);
-void swapTwoVectors(Vector*,Vector*);
-short isPresentInVector(Vector*,void*);
-short isEmptyVector(Vector*);
-void cleanVector(Vector*);
+size_t vector_size(vector*);
+void vector_swap(vector*,vector*);
+short vector_ispresent(vector*,void*);
+short vector_isempty(vector*);
+void vector_clean(vector*);
+void vector_reverse(vector*);
 
 #endif

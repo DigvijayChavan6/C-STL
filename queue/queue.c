@@ -25,6 +25,8 @@ void queue_push(queue* q, void* val){
     else if(0==strcmp(q->type,"STRING"))size=strlen((char*)val)+1;
     else if(0==strcmp(q->type,"FLOAT"))size=sizeof(float);
     else if(0==strcmp(q->type,"DOUBLE"))size=sizeof(double);
+    else if(0==strcmp(q->type,"SHORT"))size=sizeof(short);
+    else if(0==strcmp(q->type,"LONG"))size=sizeof(long);
     else if(0==strcmp(q->type,"BOOL"))size=sizeof(short);
     else size=sizeof(int);
     node->data=NULL;
