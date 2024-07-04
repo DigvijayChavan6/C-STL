@@ -27,7 +27,7 @@ This project aims to provide a reusable and generic collection library for commo
 1. Stack
 2. Queue
 3. List
-4. Tree
+4. Vector
 5. Map
 6. Set
 
