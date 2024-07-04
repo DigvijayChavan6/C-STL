@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# Any executable without extention
+*
+
 # Object files
 *.o
 *.ko
